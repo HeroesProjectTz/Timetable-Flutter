@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1041340480197",
+    "project_id": "timetable-4867a",
+    "storage_bucket": "timetable-4867a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041340480197:android:ac2a4efb732f3a6c778eac",
+        "android_client_info": {
+          "package_name": "com.heroesalliance.timetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041340480197-akm73ideo84ugtpjouc6d10vnv41dlue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9DacP6oyTxhrajeN-UuSLmjbuCPNA6ec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041340480197-akm73ideo84ugtpjouc6d10vnv41dlue.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
