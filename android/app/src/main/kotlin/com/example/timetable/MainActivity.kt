@@ -1,4 +1,4 @@
-package com.example.timetable
+package com.heroesalliance.timetable
 
 import io.flutter.embedding.android.FlutterActivity
 
