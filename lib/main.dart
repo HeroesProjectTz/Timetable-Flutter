@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
@@ -99,11 +100,11 @@ class AuthenticationWrapper extends ConsumerWidget {
         data: (data) {
           if (data != null) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              goRouter.go('/homepage');
+              GoRouter.of(context).go('/homepage');
             });
           } else {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              goRouter.go('/signin');
+              GoRouter.of(context).go('/signin');
             });
           }
           return Container(color: Colors.white);

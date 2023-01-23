@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import 'package:timetable/utils/routes.dart';
+import 'package:go_router/go_router.dart';
 
 class Authentication {
   // For Authentication related functions you need an instance of FirebaseAuth
@@ -26,7 +25,7 @@ class Authentication {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        goRouter.go('/homepage');
+        GoRouter.of(context).go('/homepage');
       });
     } on FirebaseAuthException catch (e) {
       await showDialog(
@@ -56,7 +55,7 @@ class Authentication {
         password: password,
       )
           .then((value) {
-        goRouter.go('/homepage');
+        GoRouter.of(context).go('/homepage');
         value.user!.updateDisplayName(fullName);
       });
     } on FirebaseAuthException catch (e) {
@@ -95,7 +94,7 @@ class Authentication {
 
       // Once signed in, return the UserCredential
       await _auth.signInWithPopup(googleProvider);
-      goRouter.go('/homepage');
+      GoRouter.of(context).go('/homepage');
 
       // Or use signInWithRedirect
       // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
@@ -117,7 +116,7 @@ class Authentication {
       try {
         await _auth.signInWithCredential(credential);
 
-        goRouter.go('/homepage');
+        GoRouter.of(context).go('/homepage');
       } on FirebaseAuthException catch (e) {
         await showDialog(
           context: context,
