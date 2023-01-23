@@ -14,18 +14,22 @@ final goRouter = GoRouter(
   debugLogDiagnostics: true,
   routes: [
     GoRoute(
+      name: 'signin',
       path: '/signin',
       builder: (context, state) => const LoginPage(),
     ),
     GoRoute(
+      name: 'signup',
       path: '/signup',
       builder: (context, state) => const SignUpPage(),
     ),
     GoRoute(
+      name: 'authwrapper',
       path: '/authwrapper',
       builder: (context, state) => const AuthenticationWrapper(),
     ),
     GoRoute(
+      name: 'homepage',
       path: '/homepage',
       builder: (context, state) => const HomePage(),
     ),
