@@ -100,11 +100,11 @@ class AuthenticationWrapper extends ConsumerWidget {
         data: (data) {
           if (data != null) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              GoRouter.of(context).go('/homepage');
+              GoRouter.of(context).pushNamed('homepage');
             });
           } else {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              GoRouter.of(context).go('/signin');
+              GoRouter.of(context).pushNamed('signin');
             });
           }
           return Container(color: Colors.white);

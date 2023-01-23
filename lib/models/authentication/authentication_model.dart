@@ -25,7 +25,7 @@ class Authentication {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        GoRouter.of(context).go('/homepage');
+        GoRouter.of(context).pushNamed('homepage');
       });
     } on FirebaseAuthException catch (e) {
       await showDialog(
@@ -55,7 +55,7 @@ class Authentication {
         password: password,
       )
           .then((value) {
-        GoRouter.of(context).go('/homepage');
+        GoRouter.of(context).pushNamed('homepage');
         value.user!.updateDisplayName(fullName);
       });
     } on FirebaseAuthException catch (e) {
@@ -94,7 +94,7 @@ class Authentication {
 
       // Once signed in, return the UserCredential
       await _auth.signInWithPopup(googleProvider);
-      GoRouter.of(context).go('/homepage');
+      GoRouter.of(context).pushNamed('homepage');
 
       // Or use signInWithRedirect
       // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
@@ -116,7 +116,7 @@ class Authentication {
       try {
         await _auth.signInWithCredential(credential);
 
-        GoRouter.of(context).go('/homepage');
+        GoRouter.of(context).pushNamed('homepage');
       } on FirebaseAuthException catch (e) {
         await showDialog(
           context: context,
