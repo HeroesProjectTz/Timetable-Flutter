@@ -138,13 +138,13 @@ class Authentication {
 
   // Current userName
   String getCurrentUserFullName() {
-    String fullName = _auth.currentUser!.displayName.toString();
+    String fullName = _auth.currentUser?.displayName.toString() ?? '';
     return fullName;
   }
 
   // Current userName
   String getCurrentUserUID() {
-    String uid = _auth.currentUser!.uid.toString();
+    String uid = _auth.currentUser?.uid.toString() ?? 'null';
     return uid;
   }
 
