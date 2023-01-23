@@ -148,6 +148,15 @@ class Authentication {
     return uid;
   }
 
+  Future signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  bool isLoggedIn() {
+    final userUID = _auth.currentUser?.uid ?? '';
+    bool userIsLoggedIn = userUID == '' ? false : true;
+    return userIsLoggedIn;
+  }
   // Function to address final final complete
 
   uerSessionActivated(String fullName, String email, String userId) {

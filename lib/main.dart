@@ -2,12 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
-import 'package:timetable/common/bubble_loading_widget.dart';
-import 'package:timetable/providers/authentication/authentication_provider.dart';
 import 'package:timetable/utils/colours.dart';
 import 'package:timetable/utils/routes.dart';
 
@@ -29,12 +26,13 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final goRouter = ref.read(goRouterProvider);
     return MaterialApp.router(
       routeInformationProvider: goRouter.routeInformationProvider,
       routeInformationParser: goRouter.routeInformationParser,
@@ -87,29 +85,5 @@ class MyApp extends StatelessWidget {
         backgroundColor: const Color(0xffF1FAEE),
       ),
     );
-  }
-}
-
-class AuthenticationWrapper extends ConsumerWidget {
-  const AuthenticationWrapper({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authStateChangesProvider);
-    return authState.when(
-        data: (data) {
-          if (data != null) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              GoRouter.of(context).pushNamed('homepage');
-            });
-          } else {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              GoRouter.of(context).pushNamed('signin');
-            });
-          }
-          return Container(color: Colors.white);
-        },
-        loading: () => const BubbleLoadingWidget(),
-        error: (e, trace) => Text(e.toString()));
   }
 }

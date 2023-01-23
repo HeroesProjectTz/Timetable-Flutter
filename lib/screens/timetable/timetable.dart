@@ -4,14 +4,14 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:timetable/providers/authentication/authentication_provider.dart';
 import 'package:go_router/go_router.dart';
 
-class HomePage extends ConsumerStatefulWidget {
-  const HomePage({super.key});
+class TimetablePage extends ConsumerStatefulWidget {
+  const TimetablePage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _TimetablePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _TimetablePageState extends ConsumerState<TimetablePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +34,8 @@ class _HomePageState extends ConsumerState<HomePage> {
             child: InkWell(
                 onTap: () {
                   ref.read(authenticationProvider).signOut();
-                  GoRouter.of(context).pushNamed('timetable');
+                  GoRouter.of(context).pushNamed('TimetablePage');
                 },
-                child: const Center(child: Text('Homepage')))));
+                child: const Center(child: Text('TimetablePage')))));
   }
 }
