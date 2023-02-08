@@ -1,8 +1,8 @@
 import 'package:timetable/providers/database/database_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:timetable/screens/authentication/sign_in_page.dart';
 import '../../common/bubble_loading_widget.dart';
-import 'login_page.dart';
 import 'package:timetable/services/firestore_database.dart';
 
 class CheckAuth extends ConsumerWidget {
@@ -21,12 +21,12 @@ class CheckAuth extends ConsumerWidget {
           if (db != null) {
             return pageBuilder(db);
           } else {
-            return const LoginPage();
+            return const SigninPage();
           }
         },
         error: (err, st) {
           debugPrint("login failed. Error: $err, Stacktrace: $st");
-          return const LoginPage();
+          return const SigninPage();
         },
         loading: () => const BubbleLoadingWidget());
   }
