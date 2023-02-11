@@ -25,7 +25,9 @@ class Authentication {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        GoRouter.of(context).pushNamed('homepage');
+        GoRouter.of(context).canPop()
+            ? GoRouter.of(context).pop()
+            : GoRouter.of(context).pushNamed('homepage');
       });
     } on FirebaseAuthException catch (e) {
       await showDialog(

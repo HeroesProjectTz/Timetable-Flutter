@@ -11,7 +11,8 @@ import 'package:go_router/go_router.dart';
 import 'package:timetable/utils/images.dart';
 
 class SigninPage extends ConsumerStatefulWidget {
-  const SigninPage({super.key});
+  String? redirectTo;
+  SigninPage({this.redirectTo, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SigninPageState();

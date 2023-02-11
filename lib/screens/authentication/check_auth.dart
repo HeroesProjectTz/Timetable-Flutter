@@ -21,12 +21,12 @@ class CheckAuth extends ConsumerWidget {
           if (db != null) {
             return pageBuilder(db);
           } else {
-            return const SigninPage();
+            return SigninPage();
           }
         },
         error: (err, st) {
           debugPrint("login failed. Error: $err, Stacktrace: $st");
-          return const SigninPage();
+          return SigninPage();
         },
         loading: () => const BubbleLoadingWidget());
   }

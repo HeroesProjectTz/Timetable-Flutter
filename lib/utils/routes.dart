@@ -13,17 +13,17 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final goRouterProvider = Provider<GoRouter>((ref) {
   var authRepo = ref.watch(authenticationProvider);
   return GoRouter(
-    initialLocation: '/authwrapper',
+    initialLocation: '/timetable',
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
     redirect: (context, state) {
       final isLoggedIn = authRepo.isLoggedIn();
-      debugPrint('isLoggedIn: $isLoggedIn');
-      debugPrint('currentUserUId: ${authRepo.getCurrentUserUID()}');
       if (isLoggedIn) {
         return state.location;
       } else if (!isLoggedIn) {
-        return '/signin';
+        String redirectTo = state.location;
+        return context
+            .namedLocation('signin', params: {'redirectTo': redirectTo});
       }
       return null;
     },
@@ -31,7 +31,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         name: 'signin',
         path: '/signin',
-        builder: (context, state) => const SigninPage(),
+        builder: (context, state) {
+          final redirectToValue = state.params['redirectTo'];
+          return SigninPage(
+            redirectTo: redirectToValue,
+          );
+        },
       ),
       GoRoute(
         name: 'signup',
