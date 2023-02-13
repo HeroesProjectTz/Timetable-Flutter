@@ -96,8 +96,7 @@ class Authentication {
 
       // Once signed in, return the UserCredential
       await _auth.signInWithPopup(googleProvider);
-      GoRouter.of(context).pushNamed('homepage');
-
+      context.pop();
       // Or use signInWithRedirect
       // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
     } else {
@@ -117,8 +116,6 @@ class Authentication {
 
       try {
         await _auth.signInWithCredential(credential);
-
-        GoRouter.of(context).pushNamed('homepage');
       } on FirebaseAuthException catch (e) {
         await showDialog(
           context: context,

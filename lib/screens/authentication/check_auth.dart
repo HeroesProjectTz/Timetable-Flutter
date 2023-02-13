@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:timetable/screens/authentication/sign_in_page.dart';
 import '../../common/bubble_loading_widget.dart';
 import 'package:timetable/services/firestore_database.dart';
+import 'package:go_router/go_router.dart';
 
 class CheckAuth extends ConsumerWidget {
   final Widget Function(FirestoreDatabase db) pageBuilder;
@@ -21,7 +22,10 @@ class CheckAuth extends ConsumerWidget {
           if (db != null) {
             return pageBuilder(db);
           } else {
-            return SigninPage();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              c.pushNamed('signIn');
+            });
+            return Container();
           }
         },
         error: (err, st) {
