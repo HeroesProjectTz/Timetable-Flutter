@@ -70,8 +70,7 @@ class Authentication {
         password: password,
       )
           .then((value) {
-        GoRouter.of(context).pushNamed('homepage');
-        value.user!.updateDisplayName(fullName);
+        pushToRedirectScreen(context);
       });
     } on FirebaseAuthException catch (e) {
       await showDialog(
@@ -108,8 +107,10 @@ class Authentication {
       googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
 
       // Once signed in, return the UserCredential
-      await _auth.signInWithPopup(googleProvider);
-      context.pop();
+      await _auth
+          .signInWithPopup(googleProvider)
+          .then((value) => pushToRedirectScreen(context));
+
       // Or use signInWithRedirect
       // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
     } else {
@@ -128,7 +129,9 @@ class Authentication {
       );
 
       try {
-        await _auth.signInWithCredential(credential);
+        await _auth
+            .signInWithCredential(credential)
+            .then((value) => pushToRedirectScreen(context));
       } on FirebaseAuthException catch (e) {
         await showDialog(
           context: context,
