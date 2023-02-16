@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:timetable/providers/authentication/authentication_provider.dart';
-import 'package:go_router/go_router.dart';
+import 'package:timetable/common/textfield_widget.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -15,7 +14,12 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body: Column(
+      children: [
+        TextFieldWidget(
+            texttFieldController: TextEditingController(),
+            hintText: "Try to type"),
+        Container(
             color: Colors.blue,
             height: ResponsiveValue(
               context,
@@ -33,9 +37,13 @@ class _HomePageState extends ConsumerState<HomePage> {
             ).value,
             child: InkWell(
                 onTap: () {
-                  ref.read(authenticationProvider).signOut();
-                  GoRouter.of(context).pushNamed('timetable');
+                  debugPrint("touched seems to be working");
+
+                  // ref.read(authenticationProvider).signOut();
+                  // GoRouter.of(context).pushNamed('timetable');
                 },
-                child: const Center(child: Text('Homepage')))));
+                child: const Center(child: Text('Homepage')))),
+      ],
+    ));
   }
 }

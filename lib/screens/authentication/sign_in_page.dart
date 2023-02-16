@@ -25,6 +25,7 @@ class _SigninPageState extends ConsumerState<SigninPage> {
   bool obscureText = true;
   @override
   Widget build(BuildContext c) {
+    debugPrint("RedirectValue: ${widget.redirectTo}");
     return Scaffold(
         backgroundColor: const Color(0xffF1FAEE),
         body: Padding(

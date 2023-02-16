@@ -1,10 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:go_router/go_router.dart';
 
 class Authentication {
+  pushToRedirectScreen(BuildContext context) async {
+    const FlutterSecureStorage storage = FlutterSecureStorage();
+    String value = await storage.read(key: 'redirectRoute') ?? '';
+    print("redirectRoute retrieved: $value");
+    value == '' ? context.pushNamed('homepage') : context.push(value);
+  }
+
   // For Authentication related functions you need an instance of FirebaseAuth
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -24,10 +34,11 @@ class Authentication {
     try {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) {
-        GoRouter.of(context).canPop()
-            ? GoRouter.of(context).pop()
-            : GoRouter.of(context).pushNamed('homepage');
+          .then((value) async {
+        pushToRedirectScreen(context);
+        // GoRouter.of(context).canPop()
+        //     ? GoRouter.of(context).pop()
+        //     : GoRouter.of(context).pushNamed('homepage');
       });
     } on FirebaseAuthException catch (e) {
       await showDialog(
