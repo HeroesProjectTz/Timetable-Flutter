@@ -11,8 +11,7 @@ import 'package:go_router/go_router.dart';
 import 'package:timetable/utils/images.dart';
 
 class SigninPage extends ConsumerStatefulWidget {
-  String? redirectTo;
-  SigninPage({this.redirectTo, super.key});
+  const SigninPage({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SigninPageState();
@@ -25,7 +24,6 @@ class _SigninPageState extends ConsumerState<SigninPage> {
   bool obscureText = true;
   @override
   Widget build(BuildContext c) {
-    debugPrint("RedirectValue: ${widget.redirectTo}");
     return Scaffold(
         backgroundColor: const Color(0xffF1FAEE),
         body: Padding(

@@ -50,15 +50,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     },
     routes: [
       GoRoute(
-        name: 'signin',
-        path: '/signin',
-        builder: (context, state) {
-          final redirectToValue = state.params['redirection'];
-          return SigninPage(
-            redirectTo: redirectToValue,
-          );
-        },
-      ),
+          name: 'signin',
+          path: '/signin',
+          builder: (context, state) {
+            return const SigninPage();
+          }),
       GoRoute(
         name: 'signup',
         path: '/signup',
