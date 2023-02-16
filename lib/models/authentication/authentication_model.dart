@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -8,11 +6,15 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:go_router/go_router.dart';
 
 class Authentication {
-  pushToRedirectScreen(BuildContext context) async {
+  pushToRedirectScreen(BuildContext context) {
     const FlutterSecureStorage storage = FlutterSecureStorage();
-    String value = await storage.read(key: 'redirectRoute') ?? '';
-    print("redirectRoute retrieved: $value");
-    value == '' ? context.pushNamed('homepage') : context.push(value);
+    storage.read(key: 'redirectRoute').then((value) {
+      String redirectLocation = value ?? '';
+      debugPrint("redirectRoute retrieved: $value");
+      redirectLocation == ''
+          ? context.pushNamed('homepage')
+          : context.push(redirectLocation);
+    });
   }
 
   // For Authentication related functions you need an instance of FirebaseAuth
